@@ -1,0 +1,21 @@
+
+.sidebar-item .fa {
+  transition: transform 0.3s ease;
+}
+
+.sidebar-item .fa-chevron-right {
+  transform: rotate(0deg); /* Icono apuntando a la derecha inicialmente */
+}
+
+.sidebar-item .fa-chevron-down.rotated {
+  transform: rotate(0deg); /* Icono apuntando hacia abajo al expandirse */
+}
+
+.collapse.first-level {
+  display: none;
+  transition: max-height 0.3s ease;
+}
+
+.collapse.first-level.show {
+  display: block;
+}

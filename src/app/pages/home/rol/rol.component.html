@@ -1,0 +1,89 @@
+<div class="container">
+  <h2>Crear Rol</h2>
+  <br>
+
+  <div class="header">
+    <div class="header-left">
+      <h2>Rol</h2>
+      <h1>2</h1>
+    </div>
+    <div class="header-right">
+      <div class="circle-icon">
+        <i class="fa-solid fa-people-group" style="font-size: 38px;"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="form-section">
+      <h3>Agregar Nuevo rol</h3>
+      <form (ngSubmit)="crearRol()">
+        <label for="nombre">Nombre</label>
+        <input [(ngModel)]="nuevoRol.Nombre_Rol" type="text" id="nombre" name="nombre">
+        <button type="submit">Crear</button>
+      </form>
+    </div>
+    <div class="roles-section">
+      <h3>Rol</h3>
+      <ul>
+        <li *ngFor="let rol of paginatedRoles">
+          <img src="https://img.icons8.com/?size=100&id=FEDBnMFqHKMu&format=png&color=000000" alt="rol icon">
+          <span (click)="onClickNewContact(rol.ID_Rol)">{{ rol.Nombre_Rol }}</span>
+        </li>
+        <br>
+      </ul>
+      <!-- Controles de Paginación -->
+      <div class="pagination">
+        <button (click)="previousPage()" [disabled]="currentPage === 1">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <span *ngFor="let page of pages" (click)="goToPage(page)" [class.active]="currentPage === page">{{ page }}</span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #modalAtualizarRol>
+  <div class="card">
+    <div class="card-body">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center" style="display: flex;">
+            <h5 class="font-size-14" id="groupModalNewMember">Datos Cargo</h5>
+          </div>
+          <div class="modal-body">
+            <div class="col">
+              <div class="mt-4">
+                <div id="alertModalNewMember" style="display: none;">
+                  <div class="alert alert-success" role="alert">
+                    <strong class="textAlert">
+                      <p id="textAlertModalNewMember"></p>
+                    </strong>
+                  </div>
+                </div>
+                <div class="row g-2">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label class="form-label" for="formrow-password-input">Nombre Rol</label>
+                      <input type="text" class="form-control" id="Nombre" [(ngModel)]="rolModal.Nombre_Rol">
+                      <div class="invalid-feedback" id="error-Nombre"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" (click)="updateRol()" class="btn btn-primary">Actualizar Datos</button>
+            <button type="button" (click)="deleteRol(rolModal.ID_Rol)" class="btn btn-danger">Eliminar</button>
+            <button class="btn btn-secondary" (click)="closeDialogo()" type="button" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
